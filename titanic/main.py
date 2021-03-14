@@ -1,8 +1,8 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn import tree
-test_data = pd.read_csv('test.csv')
-train_data = pd.read_csv('train.csv')
+test_data = pd.read_csv("https://raw.githubusercontent.com/PrasoonPratham/Kaggle/main/titanic/test.csv")
+train_data = pd.read_csv("https://raw.githubusercontent.com/PrasoonPratham/Kaggle/main/titanic/train.csv")
 train_labels = train_data['Survived']
 train_data.drop(['Survived', 'PassengerId', 'Name', 'Ticket', 'Cabin'], axis = 1, inplace = True) 
 train_data['Sex'] = train_data.Sex.map({"male":1, "female":0})
@@ -19,6 +19,6 @@ test_data['Age'] = test_data['Age'].fillna(test_data['Age'].median())
 test_data['Fare'] = test_data['Fare'].fillna(test_data['Fare'].median())
 pred = model.predict(test_data)
 pred = pred.astype(int)
-submission = pd.read_csv('gender_submission.csv')
+submission = pd.read_csv("https://raw.githubusercontent.com/PrasoonPratham/Kaggle/main/titanic/gender_submission.csv")
 submission['Survived'] = pred
 submission.to_csv('submission.csv', index=False)
